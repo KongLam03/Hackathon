@@ -61,11 +61,18 @@ class App extends React.Component {
               key={key}
               source={{ uri: item.video }}
               scrollPosition={scrollPosition}
-              muted={this.state.muted}
+              muted={muted}
               onPress={() => this.setState({ muted: !muted })}
             />
           ))}
-          <View style={{ height: 150, width }} />
+          <View style={styles.header}>
+            <TouchableHighlight
+              onPress={this.getVideos}
+              style={styles.uploadVideo}
+            >
+              <Text>Load More</Text>
+            </TouchableHighlight>
+          </View>
         </ScrollView>
       </SafeAreaView>
     );

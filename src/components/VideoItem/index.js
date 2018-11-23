@@ -67,7 +67,7 @@ class VideoItem extends React.Component {
 
   render() {
     const { paused } = this.state;
-    const { source, onPress } = this.props;
+    const { source, onPress, muted } = this.props;
     return (
       <TouchableHighlight
         onPress={() => this.props.onPress()}
@@ -77,7 +77,7 @@ class VideoItem extends React.Component {
           source={source}
           paused={paused}
           style={styles.video}
-          muted={this.props.muted}
+          muted={muted}
         />
       </TouchableHighlight>
     );
