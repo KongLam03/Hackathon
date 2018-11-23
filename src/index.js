@@ -10,26 +10,17 @@ import {
   Dimensions
 } from "react-native";
 import { VideoItem } from "./components";
-import { AgileVid, IdeaVid, PrankVid, DbzVid, RalphVid } from "./videos";
-import styles from './styles';
+import styles from "./styles";
+import { getVideosApi } from "./mocks/getVideos";
 
 const { width, height } = Dimensions.get("window");
 
-const containerColor = "#000000";
-const headerColor = "#323C48";
-const contentColor = "#CCC";
-const scrollColor = "#F0F8FF";
-
 class App extends React.Component {
-  // componentDidMount() {
-  //   fetch(
-  //     "https://randomyoutube.net/api/getvid?api_token=UpEWBXsc2djNKQIkRRWEzcs2z8axNY6Wn1glMPUmr2SbWbvmZJEZf8qgU7vy"
-  //   )
-  //     .then(res => console.log(`res: `, res))
-  //     .catch(e => console.log(`e: `, e));
-  // }
+  componentDidMount() {
+    this.getVideos();
+  }
   state = {
-    videos: [PrankVid, IdeaVid, DbzVid, AgileVid, RalphVid],
+    videos: [],
     scrollPosition: null,
     muted: false
   };
@@ -39,6 +30,15 @@ class App extends React.Component {
     this.setState({ scrollPosition });
   };
 
+  getVideos = () => {
+    const { videos } = this.state;
+    const startAt = videos.length;
+    const result = getVideosApi(startAt);
+    this.setState({
+      videos: [...videos, ...result]
+    });
+  };
+
   render() {
     const { videos, scrollPosition, muted } = this.state;
     return (
@@ -46,14 +46,7 @@ class App extends React.Component {
         <View style={styles.header}>
           <TouchableHighlight
             onPress={() => alert("AWS Amplify WIP")}
-            style={{
-              width: 120,
-              height: 40,
-              backgroundColor: "#F0F8FF",
-              borderRadius: 5,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
+            style={styles.uploadVideo}
           >
             <Text>Upload Video</Text>
           </TouchableHighlight>
@@ -66,7 +59,7 @@ class App extends React.Component {
           {videos.map((item, key) => (
             <VideoItem
               key={key}
-              source={item}
+              source={{ uri: item.video }}
               scrollPosition={scrollPosition}
               muted={this.state.muted}
               onPress={() => this.setState({ muted: !muted })}

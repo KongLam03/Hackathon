@@ -1,0 +1,29 @@
+{
+  "status": 1,
+  "list": [
+    {
+      "video":
+        "https://s3.eu-west-2.amazonaws.com/hackathon-deployments-mobilehub-1897940148/strongest.mp4"
+    },
+    {
+      "video":
+        "https://s3.eu-west-2.amazonaws.com/hackathon-deployments-mobilehub-1897940148/ideadrop.mp4"
+    },
+    {
+      "video":
+        "https://s3.eu-west-2.amazonaws.com/hackathon-deployments-mobilehub-1897940148/agilemanagement.mp4"
+    },
+    {
+      "video":
+        "https://s3.eu-west-2.amazonaws.com/hackathon-deployments-mobilehub-1897940148/dbz.mp4"
+    },
+    {
+      "video":
+        "https://s3.eu-west-2.amazonaws.com/hackathon-deployments-mobilehub-1897940148/pacman.mp4"
+    },
+    {
+      "video":
+        "https://s3.eu-west-2.amazonaws.com/hackathon-deployments-mobilehub-1897940148/ralph.mp4"
+    }
+  ]
+}

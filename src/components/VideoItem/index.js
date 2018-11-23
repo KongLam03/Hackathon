@@ -13,10 +13,11 @@ import styles from "./styles";
 const { width, height } = Dimensions.get("window");
 
 const THRESHOLD = 490;
+const HEADER_HEIGHT = 80;
 
 class VideoItem extends React.Component {
   state = {
-    paused: true,
+    paused: false,
     position: {
       start: null,
       end: null
@@ -33,9 +34,8 @@ class VideoItem extends React.Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    const headerHeight = 80;
     const { scrollPosition, muted } = nextProps;
-    const newScrollPosition = scrollPosition - headerHeight;
+    const newScrollPosition = scrollPosition - HEADER_HEIGHT;
     const {
       paused,
       position: { start, end }
@@ -49,9 +49,8 @@ class VideoItem extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const headerHeight = 80;
     const { scrollPosition } = prevProps;
-    const newScrollPosition = scrollPosition - headerHeight;
+    const newScrollPosition = scrollPosition - HEADER_HEIGHT;
     const {
       paused,
       position: { start, end }
@@ -86,7 +85,7 @@ class VideoItem extends React.Component {
 }
 
 VideoItem.propTypes = {
-  source: PropTypes.number.isRequired,
+  source: PropTypes.object.isRequired,
   onPress: PropTypes.func.isRequired,
   muted: PropTypes.bool.isRequired,
   scrollPosition: PropTypes.number

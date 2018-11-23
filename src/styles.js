@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 const containerColor = "#000000";
 const headerColor = "#323C48";
@@ -24,5 +24,13 @@ export default StyleSheet.create({
   },
   scrollView: {
     backgroundColor: scrollColor
+  },
+  uploadVideo: {
+    width: 120,
+    height: 40,
+    backgroundColor: scrollColor,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
