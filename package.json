@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "ios:cache-clean": "watchman watch-del-all && rm -rf $TMPDIR/react-native-packager-cache-* && rm -rf $TMPDIR/metro-bundler-cache-* && rm -rf node_modules/ && npm cache verify && npm install",
+    "ios:deep-clean": "npm run ios:cache-clean && npm run ios:remove-folders",
+    "ios:remove-folders": "rm -rf ios/build && rm -rf ~/Library/Developer/Xcode/DerivedData"
   },
   "dependencies": {
     "react": "16.6.1",

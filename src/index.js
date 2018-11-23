@@ -9,12 +9,9 @@ import {
   Button,
   Dimensions
 } from "react-native";
-import VideoItem from "./components/VideoItem";
-
-import { AgileVid, IdeaVid, PrankVid, DbzVid, RalphVid } from './videos';
-
-// import StrongVid from "./videos/strongest.mp4";
-// import WeakVid from "./videos/videoplayback.mp4";
+import { VideoItem } from "./components";
+import { AgileVid, IdeaVid, PrankVid, DbzVid, RalphVid } from "./videos";
+import styles from './styles';
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,28 +19,6 @@ const containerColor = "#000000";
 const headerColor = "#323C48";
 const contentColor = "#CCC";
 const scrollColor = "#F0F8FF";
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: containerColor
-  },
-  content: {
-    height: 150,
-    backgroundColor: contentColor,
-    paddingTop: 250,
-    alignItems: "center"
-  },
-  header: {
-    backgroundColor: headerColor,
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-	scrollView: {
-		backgroundColor: scrollColor
-	}
-});
 
 class App extends React.Component {
   // componentDidMount() {
@@ -55,7 +30,8 @@ class App extends React.Component {
   // }
   state = {
     videos: [PrankVid, IdeaVid, DbzVid, AgileVid, RalphVid],
-    scrollPosition: null
+    scrollPosition: null,
+    muted: false
   };
 
   handleScroll = e => {
@@ -64,7 +40,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { videos, scrollPosition } = this.state;
+    const { videos, scrollPosition, muted } = this.state;
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
@@ -92,9 +68,11 @@ class App extends React.Component {
               key={key}
               source={item}
               scrollPosition={scrollPosition}
+              muted={this.state.muted}
+              onPress={() => this.setState({ muted: !muted })}
             />
           ))}
-					<View style={{height: 150, width}}/>
+          <View style={{ height: 150, width }} />
         </ScrollView>
       </SafeAreaView>
     );
